@@ -1,121 +1,64 @@
-# Vimal Kumar Yadav Portfolio
+# vimalyadavkr.me
 
-Personal portfolio for `vimalyadavkr.me`, built as a focused developer command-center experience for backend, systems, and full-stack product work.
+Portfolio of **Vimal Kumar Yadav**, backend & systems engineer. One content layer, four switchable designs:
 
-## What It Shows
+| Design | What it is | Extra JS |
+| --- | --- | --- |
+| **Grimoire** | A 3D arcane library tower (React Three Fiber). Scroll to descend floor by floor; every floating tome is a project. | three.js chunk, loaded only for this design |
+| **Systems Lab** | Light, editorial "lab notebook". Every project card can run a live simulation inline. | ~2 KB |
+| **Cluster** | Command center: live service topology with a chaos monkey, plus a working terminal (`help`, `kubectl get pods -A`, Tab completion). | ~7 KB |
+| **Résumé** | Plain, printable, recruiter-first. | ~1 KB |
 
-- Interactive terminal-style hero with profile, stack, and featured project commands.
-- About section with profile summary, proof points, and a linked build-flow map.
-- Education and experience sections presented as progression milestones.
-- Featured Projects graph for NitroSense, Namora, Studi.io, DocBuddy, and Anvil.
-- Technical Skills graphs with deterministic node layout that keeps labels readable and avoids overlap.
-- Command palette for quick navigation and opening the resume or GitHub.
+Switch with the pill at the bottom of the page, `⌘K` / `Ctrl+K`, or `?theme=grimoire|lab|cluster|resume`. The choice is remembered.
+Devices that can't comfortably run WebGL (no WebGL, reduced-motion, Save-Data, < 4 GB RAM) default to the Lab.
 
-The site intentionally does not expose phone, email, or contact-form CTAs in the UI.
+## Interactive demos ("spells")
 
-## Tech Stack
+Each is a small, honest model of a real repo, loaded only when opened:
 
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-- shadcn/ui primitives used by the active UI
-- Lucide React icons
-- React Router
+| Demo | Project | Shows |
+| --- | --- | --- |
+| Crash & recover | VersionDB | WAL rule, steal/no-force, ARIES analysis → redo → undo with CLRs |
+| Offline merge | CRDT-Native Relational DB | Per-cell LWW registers with Lamport versions, delete-wins tombstones, digest convergence |
+| Consistent hashing | Distributed Cache | Virtual nodes; keys moved vs naive mod-N on node loss |
+| Fixed window vs sliding log | Rate Limiter | The fixed-window boundary burst |
+| Worker pool | HTTP server | Blocking queue → fixed pool; queueing drives p95 |
+| Gated delivery | DevOps capstones | Test/secret/CVE gates, rolling update, Argo CD self-heal |
+| Grounded retrieval | DocBuddy | BM25 ranking, citations, refusing without evidence |
 
-## Getting Started
+## Develop
 
 ```bash
 npm install
-npm run dev
+npm run dev       # http://localhost:5173
+npm test          # vitest + jsdom: all four designs, terminal, palette, every demo's logic
+npm run build     # typecheck + production build to dist/
 ```
 
-The dev server runs on Vite's default port unless another port is already in use.
-
-## Scripts
-
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the local Vite dev server |
-| `npm run build` | Build the production bundle |
-| `npm run build:dev` | Build with Vite development mode |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint |
-
-## Project Structure
+## Where things live
 
 ```text
 src/
-  assets/
-    photo.jpg                 # About section profile image
-  components/
-    ui/                       # Active shadcn/ui primitives only
-    About.tsx
-    CommandPalette.tsx
-    Education.tsx
-    Experience.tsx
-    Hero.tsx
-    Navigation.tsx
-    Projects.tsx
-    Skills.tsx
-    SystemBackdrop.tsx
-  data/
-    skills.ts                 # Skill graph content and icons
-  hooks/
-    use-toast.ts              # Toast state used by shadcn toaster
-  lib/
-    graph-layout.ts           # Reusable circular node placement solver
-    utils.ts                  # Shared className helper
-  pages/
-    Index.tsx
-    NotFound.tsx
+  data/          profile.ts, projects.ts (all project copy: sourced from each repo's README), chapters.ts
+  shared/        theme switcher, project dialog, ⌘K palette, Konami easter egg
+  spells/        the seven interactive demos (each its own lazy chunk)
+  themes/
+    grimoire/    Scene.tsx (tower, books, camera rig), textures.ts (procedural canvas art), Effects.tsx (bloom)
+    lab/  cluster/  resume/
+  store.ts       theme + dialog state (zustand)
 ```
 
-Static files live in `public/`:
+To add or edit a project, change `src/data/projects.ts`; every design picks it up.
 
-- `favicon.svg`
-- `favicon.ico`
-- `og-image.svg`
-- `resume.pdf`
-- `robots.txt`
+## Performance notes
 
-## Layout Notes
+- Code-split per design and per demo; hovering a design in the switcher prefetches it.
+- Grimoire: no model or image downloads (all art is generated on canvas), instanced shelves (one draw call),
+  fog-limited draw distance, DPR capped, rendering paused while a dialog is open, automatic quality
+  drop via `PerformanceMonitor`; bloom is a separate chunk that mobile never loads.
+- Fonts self-hosted (`@fontsource`), only the subsets a page uses are fetched. Portrait served as WebP (15 KB).
+- `index.html` sets the theme before first paint, ships JSON-LD, OG image and a `<noscript>` fallback.
 
-The Technical Skills section uses `buildCircularNodeLayout` from `src/lib/graph-layout.ts`.
+## Deploy
 
-That helper takes:
-
-- graph bounds,
-- center coordinates,
-- node dimensions,
-- spacing constraints,
-- radius limits.
-
-It then searches radius and rotation combinations until nodes are inside bounds and do not overlap. This keeps graph layout logic separate from rendering, so the `Skills` component stays focused on presentation.
-
-## Verification
-
-Production build:
-
-```bash
-npm run build
-```
-
-Lint:
-
-```bash
-npm run lint
-```
-
-At the time of this cleanup, build passes. Lint status should be checked after edits; the project has been trimmed so stale unused template components are no longer part of the source tree.
-
-## Deployment
-
-The repository is configured for GitHub Pages with:
-
-- `CNAME` for `vimalyadavkr.me`
-- `.nojekyll`
-- static assets in `public/`
-
-Push changes to `main` after verifying the production build.
+GitHub Pages via `.github/workflows/deploy.yml` on push to `main` (tests → build → publish `dist/`). `CNAME` = `vimalyadavkr.me`.

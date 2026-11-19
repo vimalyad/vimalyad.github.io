@@ -1,27 +1,45 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { Suspense, useCallback, useEffect, useState } from 'react'
+import { useStore } from './store'
+import { themeViews } from './themes/registry'
+import { ThemeSwitcher } from './shared/ThemeSwitcher'
+import { ProjectDialog } from './shared/ProjectDialog'
+import { CommandPalette } from './shared/CommandPalette'
+import { useKonami } from './shared/useKonami'
 
-const queryClient = new QueryClient();
+export default function App() {
+  const theme = useStore((s) => s.theme)
+  const overcharge = useStore((s) => s.overcharge)
+  const [toast, setToast] = useState<string | null>(null)
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+  }, [theme])
 
-export default App;
+  useKonami(
+    useCallback(() => {
+      overcharge()
+      setToast(theme === 'grimoire' ? '✦ The grimoire overflows with mana ✦' : theme === 'cluster' ? 'chaos-mode: ENABLED' : 'Secret found. Hello, fellow tinkerer.')
+      setTimeout(() => setToast(null), 3500)
+    }, [overcharge, theme]),
+  )
+
+  const View = themeViews[theme]
+  return (
+    <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <Suspense fallback={<div className="boot" aria-busy="true" />}>
+        <View key={theme} />
+      </Suspense>
+      <ThemeSwitcher />
+      <ProjectDialog />
+      <CommandPalette />
+      {toast && (
+        <div className="toast" role="status">
+          {toast}
+        </div>
+      )}
+    </>
+  )
+}

@@ -1,26 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="grimoire">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vimal Kumar Yadav | Backend Engineer & Systems Builder</title>
-    <meta name="description" content="Backend engineer building production systems across Spring Boot microservices, real-time collaboration, event-driven pipelines, automation, and AI workflows." />
+    <title>Vimal Kumar Yadav · Backend & Systems Engineer</title>
+    <meta name="description" content="Vimal Kumar Yadav, backend and systems engineer in Bengaluru. Database engines, distributed caches, rate limiters, GitOps pipelines and AI agents, built from first principles." />
     <meta name="author" content="Vimal Kumar Yadav" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" />
-
-    <meta property="og:title" content="Vimal Kumar Yadav | Backend Engineer & Systems Builder" />
-    <meta property="og:description" content="Backend engineer building production systems across Spring Boot microservices, real-time collaboration, event-driven pipelines, automation, and AI workflows." />
+    <link rel="canonical" href="https://vimalyadavkr.me/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#07060b" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.svg" />
-
+    <meta property="og:url" content="https://vimalyadavkr.me/" />
+    <meta property="og:title" content="Vimal Kumar Yadav · Backend & Systems Engineer" />
+    <meta property="og:description" content="Storage engines, caches, rate limiters and delivery pipelines, built from first principles. Pick a design: 3D grimoire, systems lab, or cluster command center." />
+    <meta property="og:image" content="https://vimalyadavkr.me/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@vimalyad" />
-    <meta name="twitter:image" content="/og-image.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vimal Kumar Yadav",
+        "jobTitle": "Backend & Systems Engineer",
+        "url": "https://vimalyadavkr.me/",
+        "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN" },
+        "alumniOf": "BITS Pilani",
+        "sameAs": ["https://github.com/vimalyad", "https://github.com/vimalkryadav", "https://www.linkedin.com/in/vimal-kumar-yadav-58a7a5316/"]
+      }
+    </script>
+    <script>
+      // Apply the chosen design before first paint so there's no colour flash.
+      try {
+        var q = new URLSearchParams(location.search).get('theme') || localStorage.getItem('theme')
+        if (q) document.documentElement.dataset.theme = q
+      } catch (e) {}
+    </script>
+    <style>
+      .boot { position: fixed; inset: 0; background: var(--bg, #07060b); }
+    </style>
   </head>
-
   <body>
     <div id="root"></div>
+    <noscript>
+      <main style="max-width: 680px; margin: 3rem auto; font-family: system-ui; line-height: 1.6; padding: 0 1rem">
+        <h1>Vimal Kumar Yadav</h1>
+        <p>Backend &amp; Systems Engineer, Bengaluru. Database engines, distributed caches, rate limiters, GitOps pipelines and AI agents, built from first principles.</p>
+        <p><a href="/resume.pdf">Résumé (PDF)</a> · <a href="https://github.com/vimalyad">GitHub</a> · <a href="https://www.linkedin.com/in/vimal-kumar-yadav-58a7a5316/">LinkedIn</a></p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

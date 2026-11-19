@@ -1,0 +1,357 @@
+.t-grimoire {
+  position: relative;
+}
+.g-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+.g-canvas {
+  position: absolute !important;
+  inset: 0;
+}
+.g-static {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 40%, rgba(232, 181, 90, 0.18), transparent 45%), radial-gradient(circle at 20% 80%, rgba(94, 234, 212, 0.08), transparent 40%), var(--bg);
+}
+.g-loader {
+  position: absolute;
+  right: 22%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  color: var(--accent);
+  font-family: var(--font-display);
+  letter-spacing: 0.1em;
+  transition: opacity 0.8s;
+  pointer-events: none;
+}
+.g-loader.done {
+  opacity: 0;
+}
+.g-loader-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  animation: g-spin 1.4s linear infinite;
+  box-shadow: 0 0 30px rgba(232, 181, 90, 0.35);
+}
+@keyframes g-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 999px) {
+  .g-loader {
+    right: 50%;
+    top: 26%;
+  }
+}
+
+.g-main {
+  position: relative;
+  z-index: 1;
+  pointer-events: none; /* let the 3D scene receive clicks between panels */
+}
+.g-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem clamp(1rem, 6vw, 6rem);
+}
+.g-panel {
+  pointer-events: auto;
+  max-width: 540px;
+  background: linear-gradient(160deg, rgba(20, 15, 28, 0.86), rgba(10, 8, 15, 0.8));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  position: relative;
+}
+.g-panel::before,
+.g-panel::after {
+  content: '✦';
+  position: absolute;
+  color: var(--chapter, var(--accent));
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+.g-panel::before {
+  top: 0.6rem;
+  left: 0.7rem;
+}
+.g-panel::after {
+  bottom: 0.6rem;
+  right: 0.7rem;
+}
+@media (max-width: 999px) {
+  .g-section {
+    align-items: flex-end;
+    padding-top: 52vh;
+  }
+  .g-panel {
+    max-width: none;
+    width: 100%;
+    background: rgba(12, 9, 18, 0.92);
+  }
+}
+.g-kicker {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  color: var(--chapter, var(--accent));
+  margin: 0 0 0.5rem;
+}
+.t-grimoire h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  background: linear-gradient(180deg, #fff3d6, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 40px rgba(232, 181, 90, 0.25);
+}
+.t-grimoire h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  color: #fff3d6;
+  margin-bottom: 0.75rem;
+}
+.g-role {
+  font-family: var(--font-display);
+  color: var(--accent-2);
+  margin: 0.5rem 0 1rem;
+}
+.g-panel > p {
+  color: #d7ccb7;
+}
+.g-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+.t-grimoire .btn {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+.g-hint {
+  font-size: 0.8rem;
+  color: var(--muted) !important;
+  font-style: italic;
+  margin-top: 1.25rem;
+}
+.g-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin: 1.25rem 0;
+}
+.g-stats div {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem;
+  display: grid;
+  gap: 0.2rem;
+}
+.g-stats b {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+.g-stats span {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+@media (max-width: 520px) {
+  .g-stats {
+    grid-template-columns: 1fr;
+  }
+}
+.g-sub {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 1rem;
+  margin: 1.5rem 0 0.75rem;
+  letter-spacing: 0.06em;
+}
+.g-quest {
+  border-left: 2px solid var(--border);
+  padding-left: 0.9rem;
+  margin-bottom: 1rem;
+}
+.g-quest-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.g-quest-head span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+.g-quest ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1rem;
+  color: #cfc3ad;
+  font-size: 0.88rem;
+}
+.g-edu {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+.g-edu span {
+  color: var(--muted);
+}
+.g-blurb {
+  font-style: italic;
+}
+.g-tomes {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.g-tomes button {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.8rem 0.95rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.g-tomes button:hover,
+.g-tomes button:focus-visible {
+  border-color: var(--chapter, var(--accent));
+  background: color-mix(in srgb, var(--chapter, var(--accent)) 8%, transparent);
+  transform: translateX(4px);
+}
+.g-tome-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #fff3d6;
+}
+.g-tome-tag {
+  font-size: 0.86rem;
+  color: #cfc3ad;
+}
+.g-tome-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.g-tome-meta em {
+  color: var(--chapter, var(--accent));
+  font-style: normal;
+}
+.g-plain {
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  color: #cfc3ad;
+}
+.g-plain li {
+  margin-bottom: 0.35rem;
+}
+.g-plain a {
+  color: var(--accent);
+}
+.g-cols {
+  columns: 2;
+}
+.g-linkbtn {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: #e9dfcb;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+.g-linkbtn:hover {
+  color: var(--accent);
+}
+.g-state {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0 0.4rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+.g-state.merged {
+  color: var(--ok);
+}
+.g-state.open {
+  color: var(--accent-2);
+}
+
+/* Floor gauge: a little elevator indicator on the right edge */
+.g-gauge {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  display: grid;
+  gap: 0.35rem;
+}
+.g-gauge button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 0.15rem;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.g-gauge button span {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.g-gauge button::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  border: 1px solid var(--accent);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.g-gauge button[aria-current] {
+  color: var(--accent);
+}
+.g-gauge button[aria-current]::after {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+.g-gauge:hover button span,
+.g-gauge button[aria-current] span,
+.g-gauge button:focus-visible span {
+  opacity: 1;
+}
+@media (max-width: 999px) {
+  .g-gauge {
+    display: none;
+  }
+}

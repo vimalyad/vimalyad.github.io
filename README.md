@@ -1,4 +1,4 @@
-# vimalyadavkr.me
+# vimalyad.github.io
 
 Portfolio of **Vimal Kumar Yadav**, backend & systems engineer. One content layer, four switchable designs:
 
@@ -61,4 +61,4 @@ To add or edit a project, change `src/data/projects.ts`; every design picks it u
 
 ## Deploy
 
-GitHub Pages via `.github/workflows/deploy.yml` on push to `main` (tests → build → publish `dist/`). `CNAME` = `vimalyadavkr.me`.
+GitHub Pages via `.github/workflows/deploy.yml` on push to `main` (tests → build → publish `dist/`), served at https://vimalyad.github.io/.

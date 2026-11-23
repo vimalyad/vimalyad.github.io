@@ -217,7 +217,7 @@ export default function ClusterTheme() {
             {'\n'}
             <a href={profile.links.linkedin}>linkedin    linkedin.com/in/vimal-kumar-yadav</a>
             {'\n'}
-            <a href={profile.links.resume}>resume      vimalyadavkr.me/resume.pdf</a>
+            <a href={profile.links.resume}>resume      vimalyad.github.io/resume.pdf</a>
           </pre>
         </section>
       </main>

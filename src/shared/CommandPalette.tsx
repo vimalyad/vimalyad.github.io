@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { projects } from '../data/projects'
 import { profile } from '../data/profile'
-import { THEMES, useStore } from '../store'
+import { useStore } from '../store'
 
 type Cmd = { id: string; label: string; hint: string; run: () => void }
 
@@ -12,7 +12,6 @@ export function scrollToId(id: string) {
 export function CommandPalette() {
   const open = useStore((s) => s.paletteOpen)
   const setPalette = useStore((s) => s.setPalette)
-  const setTheme = useStore((s) => s.setTheme)
   const openProject = useStore((s) => s.openProject)
   const ref = useRef<HTMLDialogElement>(null)
   const [q, setQ] = useState('')
@@ -53,16 +52,17 @@ export function CommandPalette() {
         ['archive', 'Archive & open source'],
         ['contact', 'Contact'],
       ].map(([id, label]) => ({ id: `s-${id}`, label: `Go to ${label}`, hint: 'section', run: () => scrollToId(id) })),
-      ...THEMES.map((t) => ({ id: `t-${t.id}`, label: `Switch design: ${t.label}`, hint: 'design', run: () => setTheme(t.id) })),
       { id: 'resume', label: 'Open résumé (PDF)', hint: 'link', run: ext(profile.links.resume) },
       { id: 'gh', label: 'GitHub: vimalyad', hint: 'link', run: ext(profile.links.github) },
+      { id: 'lc', label: 'LeetCode', hint: 'link', run: ext(profile.links.leetcode) },
+      { id: 'gfg', label: 'GeeksforGeeks', hint: 'link', run: ext(profile.links.gfg) },
       { id: 'gh2', label: 'GitHub: vimalkryadav', hint: 'link', run: ext(profile.links.githubAlt) },
       { id: 'li', label: 'LinkedIn', hint: 'link', run: ext(profile.links.linkedin) },
       ...projects
         .filter((p) => !p.featured)
         .map((p) => ({ id: `a-${p.slug}`, label: p.name, hint: 'archive', run: () => openProject(p.slug) })),
     ]
-  }, [openProject, setTheme])
+  }, [openProject])
 
   const results = useMemo(() => {
     const needle = q.trim().toLowerCase()
@@ -82,7 +82,7 @@ export function CommandPalette() {
       <input
         autoFocus
         value={q}
-        placeholder="Jump to a project, section or design…"
+        placeholder="Jump to a project or section…"
         aria-controls="palette-list"
         aria-activedescendant={results[sel] ? `cmd-${results[sel].id}` : undefined}
         onChange={(e) => {

@@ -6,7 +6,6 @@ import { SpellView, spellInfo } from '../spells'
 
 export function ProjectDialog() {
   const slug = useStore((s) => s.project)
-  const theme = useStore((s) => s.theme)
   const openProject = useStore((s) => s.openProject)
   const ref = useRef<HTMLDialogElement>(null)
   const project = projects.find((p) => p.slug === slug)
@@ -19,8 +18,7 @@ export function ProjectDialog() {
   }, [project])
 
   const chapter = project && chapters.find((c) => c.category === project.category)
-  const chapterName =
-    chapter && (theme === 'grimoire' ? `Chapter ${chapter.numeral} · ${chapter.grimoire}` : theme === 'cluster' ? chapter.cluster : chapter.lab)
+  const chapterName = chapter && `Chapter ${chapter.numeral} · ${chapter.grimoire}`
   const spell = project && project.spell !== 'none' ? spellInfo[project.spell] : null
 
   return (
@@ -69,7 +67,7 @@ export function ProjectDialog() {
           </div>
           {spell && (
             <section className="pd-spell" aria-label="Interactive demo">
-              <h3>{theme === 'grimoire' ? `Spell: ${spell.title}` : `Try it: ${spell.title}`}</h3>
+              <h3>Spell: {spell.title}</h3>
               <p>{spell.caption}</p>
               <SpellView spell={project.spell} />
             </section>

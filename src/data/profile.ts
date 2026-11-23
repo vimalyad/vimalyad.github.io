@@ -7,7 +7,7 @@ export const profile = {
   tagline:
     'I build the machinery underneath products: storage engines, caches, agent platforms and delivery pipelines, usually from first principles.',
   about: [
-    'I am an MTS Intern at ArcFront, where I ship production RL training environments (full-stack clones of real platforms used to train frontier models) and built an agentic platform that fixes QA-reported bugs, verifies the fix in a real browser and opens the PR. Before that I automated regression testing across four SaaS products at Neeto and was the founding backend engineer at Bricks Education.',
+    'I am an MTS Intern at ArcFront, where I ship production RL training environments (full-stack clones of real platforms used to train frontier models) and built an agentic platform that fixes QA-reported bugs, verifies the fix in a real browser and opens the PR. Before that I automated regression testing across four SaaS products at Neeto and co-founded Bricks Education as its CTO.',
     'My favourite way to learn a system is to rebuild it: a relational database with ARIES recovery and MVCC, a CRDT-replicated SQL engine, a low-latency typeahead behind a consistent-hash ring. I study Computer Science at Scaler School of Technology and BITS Pilani, and I care about clear interfaces, measurable performance and code that stays maintainable after launch.',
   ],
   links: {
@@ -60,10 +60,10 @@ export const experience: Role[] = [
     ],
   },
   {
-    period: 'Apr 2025 – Sep 2025',
-    title: 'Founding Backend Engineer',
+    period: 'Nov 2024 – Sep 2025',
+    title: 'Co-Founder & CTO',
     company: 'Bricks Education',
-    location: 'Pilani / Remote',
+    location: 'Karnataka, India',
     points: [
       'Sole backend developer through 3 product pivots (LMS, social platform, school curriculum), shipping each iteration from scratch in Spring Boot',
       'Built course delivery, assignment submission and student-interaction APIs; onboarded 2 schools in Pilani and iterated on live user feedback',

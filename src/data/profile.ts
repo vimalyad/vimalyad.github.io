@@ -7,7 +7,7 @@ export const profile = {
   tagline:
     'I build the machinery underneath products: storage engines, caches, agent platforms and delivery pipelines, usually from first principles.',
   about: [
-    'I am a Software Engineer Intern at Scaler AI Labs, where I ship production RL training environments (full-stack clones of real platforms used to train frontier models) and built an agentic platform that fixes QA-reported bugs, verifies the fix in a real browser and opens the PR. Before that I automated regression testing across four SaaS products at Neeto and was the founding backend engineer at Bricks Education.',
+    'I am an MTS Intern at ArcFront, where I ship production RL training environments (full-stack clones of real platforms used to train frontier models) and built an agentic platform that fixes QA-reported bugs, verifies the fix in a real browser and opens the PR. Before that I automated regression testing across four SaaS products at Neeto and was the founding backend engineer at Bricks Education.',
     'My favourite way to learn a system is to rebuild it: a relational database with ARIES recovery and MVCC, a CRDT-replicated SQL engine, a low-latency typeahead behind a consistent-hash ring. I study Computer Science at Scaler School of Technology and BITS Pilani, and I care about clear interfaces, measurable performance and code that stays maintainable after launch.',
   ],
   links: {
@@ -39,8 +39,8 @@ export type Role = {
 export const experience: Role[] = [
   {
     period: 'Jun 2026 – Present',
-    title: 'Software Engineer Intern',
-    company: 'Scaler AI Labs',
+    title: 'MTS Intern',
+    company: 'ArcFront',
     location: 'Bengaluru, India',
     points: [
       'Shipped 8 production RL training environments (high-fidelity Next.js + FastAPI + Docker clones of e-commerce, analytics, hotel-booking, health-records, billing, workflow, web-analytics and video-editing platforms) used to train models for leading frontier AI labs; 1,800+ commits',

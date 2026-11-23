@@ -350,9 +350,9 @@ function FloorContents({ floors, onOpen }: { floors: FloorDef[]; onOpen: (slug: 
               color={f.color}
               seed={p.slug}
               y={y + (small ? (ring ? 1.2 : -1.0) : 0)}
-              radius={small ? (ring ? 3.6 : 2.6) : list.length <= 2 ? 2.2 : 3.1}
+              radius={small ? (ring ? 3.6 : 2.6) : list.length <= 2 ? 2.2 : list.length > 5 ? 3.7 : 3.1}
               angle={(j / list.length) * Math.PI * 2}
-              scale={small ? 0.55 : 1}
+              scale={small ? 0.55 : list.length > 5 ? 0.82 : 1}
               label={p.name}
               onActivate={() => onOpen(p.slug)}
             />

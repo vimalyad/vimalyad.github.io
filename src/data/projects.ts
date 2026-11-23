@@ -20,14 +20,14 @@ export const projects: Project[] = [
   {
     slug: 'version-db',
     name: 'VersionDB',
-    tagline: 'Relational database engine from scratch in Java: WAL, ARIES recovery, MVCC, B+Tree',
+    tagline: 'Zero-dependency relational database engine from scratch in Java: ARIES WAL, MVCC, B+Tree, optimizer',
     category: 'databases',
     featured: true,
     stack: ['Java 17', 'Maven', 'JUnit 5'],
     highlights: [
-      '8 KB slotted pages, 256-frame buffer pool with clock eviction, and WAL-before-flush enforced by a callback',
-      'ARIES three-pass crash recovery (analysis, redo, undo) with CLRs; MVCC snapshot isolation, first-writer-wins',
-      'MVCC sustained ~6-14x the read throughput of a table-lock baseline under concurrent writers; 424 JUnit tests',
+      'Slotted-page storage, ARIES WAL recovery (analysis, redo, undo with CLRs), SQL parser, B+Tree, cost-based optimizer and Volcano executor',
+      'PostgreSQL-style MVCC: xmin/xmax version chains, snapshot isolation, first-writer-wins over 1,024 striped locks',
+      '~12× higher read throughput than a lock-based baseline under contention; 424 unit tests',
     ],
     repo: 'https://github.com/vimalyad/version-db',
     year: 2026,
@@ -197,19 +197,19 @@ export const projects: Project[] = [
   },
   {
     slug: 'typeahead',
-    name: 'Search Typeahead',
-    tagline: 'Autocomplete ranked by popularity and recency, served from a trie with sharded Redis',
+    name: 'Typeahead',
+    tagline: 'Low-latency search autocomplete: trie with precomputed top-K behind a consistent-hash cache ring',
     category: 'distributed',
-    featured: false,
+    featured: true,
     stack: ['Java 21', 'Spring Boot', 'Redis', 'Kafka', 'PostgreSQL', 'React'],
     highlights: [
-      'Top-10 suggestions at under 25 ms p95 with a 99.8% cache hit rate, served from an in-memory ranked trie',
-      'Three standalone Redis nodes sharded by a service-owned consistent-hash ring; fail-open on cache loss',
-      'Searches flow through Kafka to a batch worker that collapses duplicates (~15:1 event-to-row reduction)',
+      'Trie with per-node precomputed top-K suggestions, ranked by popularity and recency',
+      '99.8% cache hits at ~17K req/s (p95 ~20 ms) via a consistent-hash ring with single-flight and TTL jitter',
+      'Batched Kafka-to-Postgres upserts cut database writes ~4,500:1',
     ],
     repo: 'https://github.com/vimalyad/typeahead',
     year: 2026,
-    spell: 'none',
+    spell: 'hash-ring',
   },
   {
     slug: 'http-calculator',
@@ -348,14 +348,14 @@ export const projects: Project[] = [
   {
     slug: 'accura',
     name: 'Accura',
-    tagline: 'Accuracy-first browser agent in TypeScript and Playwright that refuses unproven success',
+    tagline: 'Model-agnostic, accuracy-first browser agent that refuses to claim unproven success',
     category: 'ai',
     featured: true,
-    stack: ['TypeScript', 'Playwright', 'Claude', 'Zod', 'pnpm'],
+    stack: ['TypeScript', 'Playwright', 'Turborepo', 'Zod', 'Claude'],
     highlights: [
       'Model picks from enumerated, stable element ids instead of inventing selectors; 17 core zod-validated actions',
       'Every step verified by state diff; "done" needs grounding of claimed values plus a skeptical judge',
-      'Best-of-3 with an arbiter at uncertain steps and outcome simulation before irreversible actions',
+      '9-package Turbo monorepo with 130 tests; routes per-role models across Anthropic and any OpenAI-compatible endpoint',
     ],
     repo: 'https://github.com/vimalyad/accura',
     year: 2026,
@@ -381,7 +381,7 @@ export const projects: Project[] = [
   {
     slug: 'lurkr',
     name: 'Lurkr',
-    tagline: 'Multi-agent market intelligence: finds your competitors and briefs you on threats',
+    tagline: 'iQOO Hackathon 2026: a 5-agent market-intelligence PWA that briefs you on your competitors',
     category: 'ai',
     featured: true,
     stack: ['React', 'Express', 'OpenRouter', 'Neon Postgres', 'Capacitor', 'Tavily'],
@@ -462,6 +462,13 @@ export const projects: Project[] = [
 ];
 
 export const contributions: Contribution[] = [
+  {
+    project: 'meilisearch/meilisearch-java',
+    title: 'Add Meilisearch 1.18 features: queryVector and index renaming',
+    url: 'https://github.com/meilisearch/meilisearch-java/pull/906',
+    state: 'merged',
+    date: '2025-12-29',
+  },
   {
     project: 'kornia/kornia',
     title: 'fix(core): route MPS SVD and svdvals through CPU at 8192 elements or more',

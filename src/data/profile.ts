@@ -1,25 +1,30 @@
+// Sources: résumé (Drive, Nov 2026), GitHub API, LeetCode and GeeksforGeeks public profiles (checked 2026-11-23).
 export const profile = {
   name: 'Vimal Kumar Yadav',
   handle: 'vimalyad',
   role: 'Backend & Systems Engineer',
   location: 'Bengaluru, India',
   tagline:
-    'I build the machinery underneath products: storage engines, caches, rate limiters and delivery pipelines, usually from first principles.',
+    'I build the machinery underneath products: storage engines, caches, agent platforms and delivery pipelines, usually from first principles.',
   about: [
-    'I build backend-heavy products that go from a rough idea to a production system. Recent work spans school-facing platforms, SaaS test automation at Neeto, Kafka and Redis-backed delivery architecture, document-grounded AI workflows, and Rust/Linux systems tooling.',
-    'My favourite way to learn a system is to rebuild it: a relational database with crash recovery, a CRDT-replicated SQL engine, a multi-threaded HTTP server on raw sockets. I care about clear interfaces, measurable performance, and code that stays maintainable after launch.',
+    'I am a Software Engineer Intern at Scaler AI Labs, where I ship production RL training environments (full-stack clones of real platforms used to train frontier models) and built an agentic platform that fixes QA-reported bugs, verifies the fix in a real browser and opens the PR. Before that I automated regression testing across four SaaS products at Neeto and was the founding backend engineer at Bricks Education.',
+    'My favourite way to learn a system is to rebuild it: a relational database with ARIES recovery and MVCC, a CRDT-replicated SQL engine, a low-latency typeahead behind a consistent-hash ring. I study Computer Science at Scaler School of Technology and BITS Pilani, and I care about clear interfaces, measurable performance and code that stays maintainable after launch.',
   ],
   links: {
     github: 'https://github.com/vimalyad',
     githubAlt: 'https://github.com/vimalkryadav',
     linkedin: 'https://www.linkedin.com/in/vimal-kumar-yadav-58a7a5316/',
+    leetcode: 'https://leetcode.com/u/VimalYad_2907/',
+    gfg: 'https://www.geeksforgeeks.org/user/vimalyad2907/',
     resume: '/resume.pdf',
   },
   stack: {
-    Backend: ['Java', 'Spring Boot', 'Kafka', 'Redis', 'PostgreSQL', 'MongoDB'],
-    Systems: ['Rust', 'C++', 'Linux', 'Go', 'Database internals'],
-    'DevOps': ['Docker', 'Kubernetes', 'Helm', 'Argo CD', 'Terraform', 'GitHub Actions'],
-    'Frontend & AI': ['TypeScript', 'React', 'Playwright', 'RAG', 'LLM agents'],
+    Languages: ['Java', 'Rust', 'TypeScript', 'Python', 'C++', 'Go', 'SQL'],
+    'Backend & frameworks': ['Spring Boot', 'Node.js', 'FastAPI', 'axum', 'Tokio', 'Temporal', 'React', 'Next.js'],
+    'Distributed systems': ['Kafka', 'Redis', 'CRDTs', 'MVCC', 'WAL/ARIES', 'Consistent hashing'],
+    Databases: ['PostgreSQL', 'MySQL', 'SQLite', 'Qdrant', 'MongoDB'],
+    'AI & data': ['LLM agents', 'RAG', 'LangChain', 'OpenEnv RL'],
+    'Cloud & DevOps': ['Docker', 'Kubernetes', 'Helm', 'Argo CD', 'GitHub Actions', 'GCP'],
   } as Record<string, string[]>,
 }
 
@@ -33,14 +38,25 @@ export type Role = {
 
 export const experience: Role[] = [
   {
+    period: 'Jun 2026 – Present',
+    title: 'Software Engineer Intern',
+    company: 'Scaler AI Labs',
+    location: 'Bengaluru, India',
+    points: [
+      'Shipped 8 production RL training environments (high-fidelity Next.js + FastAPI + Docker clones of e-commerce, analytics, hotel-booking, health-records, billing, workflow, web-analytics and video-editing platforms) used to train models for leading frontier AI labs; 1,800+ commits',
+      'Built an agentic bug-fixing platform (Java 25/Spring Boot, Temporal, Postgres) that fixes QA-reported bugs in sandboxed runs, verifies each in headless Chromium and opens PRs; first batch fixed 25 of 45 bugs at $3.90 per first-try fix',
+      'Led an electronic health-records platform clone (700+ commits, 230+ tables, 700+ API endpoints) on a 15,000-patient synthetic dataset, closing 170+ QA-reported bugs',
+      'Built a hotel booking & loyalty platform clone (9,947 hotels, 3.2M nightly rates, 75K photos) with 5.4× faster DB rebuilds via SQLite cache tuning',
+    ],
+  },
+  {
     period: 'Feb 2026 – Apr 2026',
-    title: 'SDE Intern',
+    title: 'Software Engineer Intern',
     company: 'Neeto (BigBinary)',
     location: 'Remote',
     points: [
-      'Expanded automated test coverage across 4 SaaS products using Playwright and TypeScript',
-      'Replaced manual QA on critical user journeys with reliable, repeatable browser automation',
-      'Built NeetoCI pipelines with 4-shard parallel Playwright runs, PR-label triggers, and GitHub/Slack notifications',
+      'Automated regression on 120+ user journeys across 4 SaaS products with Playwright and TypeScript, catching 8+ production defects',
+      'Built NeetoCI pipelines with 4-shard parallel execution, PR-label triggers and GitHub/Slack notifications, cutting regression feedback from 4 hours to near-realtime at 95% coverage',
     ],
   },
   {
@@ -49,30 +65,30 @@ export const experience: Role[] = [
     company: 'Bricks Education',
     location: 'Pilani / Remote',
     points: [
-      'Owned backend development through 3 product pivots: LMS, social platform, and school curriculum platform',
-      'Shipped course delivery, assignment submission, and student-interaction APIs from scratch in Spring Boot',
-      'Supported onboarding for 2 schools in Pilani and iterated directly from live user feedback',
+      'Sole backend developer through 3 product pivots (LMS, social platform, school curriculum), shipping each iteration from scratch in Spring Boot',
+      'Built course delivery, assignment submission and student-interaction APIs; onboarded 2 schools in Pilani and iterated on live user feedback',
     ],
   },
 ]
 
 export const education = [
   {
-    period: '2024 – 2027',
-    institution: 'BITS Pilani',
-    degree: 'B.Sc. Computer Science',
-    detail: 'DSA, DBMS, Operating Systems, Computer Networks, OOP, Distributed Systems',
+    period: 'Aug 2024 – Present',
+    institution: 'Scaler School of Technology',
+    degree: 'Undergraduate Program in Computer Science',
+    detail: 'CGR 9.32 / 10 · Bengaluru',
   },
   {
-    period: '2022',
-    institution: 'MPVM Ganga Gurukulam',
-    degree: 'Class 12',
-    detail: '85.40% · Prayagraj, Uttar Pradesh',
+    period: '2024 – 2027',
+    institution: 'BITS Pilani',
+    degree: 'B.Sc. (Hons.) Computer Science',
+    detail: 'CGPA 8.63 / 10',
   },
 ]
 
 export const achievements = [
-  { value: 'Rank 158', label: 'Meta × Hugging Face RL Hackathon', detail: 'among 15,000+ teams' },
-  { value: '500+ days', label: 'LeetCode streak', detail: 'long-running DSA practice habit' },
-  { value: '8 services', label: 'Namora architecture', detail: 'Spring Boot, Kafka, Redis GEO' },
+  { value: 'Rank 158', label: 'Meta × Hugging Face RL Hackathon', detail: 'out of 15,000+ teams globally' },
+  { value: '1,000+', label: 'LeetCode problems solved', detail: '180+ hard, with a 500+ day streak' },
+  { value: 'Rank #2', label: 'GeeksforGeeks, institute', detail: 'at Scaler School of Technology; 400+ problems' },
+  { value: 'iQOO 2026', label: 'Hackathon build', detail: 'Lurkr, a 5-agent market-intelligence PWA' },
 ]
